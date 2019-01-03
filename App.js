@@ -7,39 +7,37 @@
  */
 
 import React, { Component } from "react";
-import { StyleSheet, Text, View } from "react-native";
+import { StyleSheet, TextInput, Text, View, Button } from "react-native";
 
 export default class App extends Component {
   constructor() {
     super();
     this.state = {};
-    this.state.customStyles = {
-      color: "red"
-    };
+    this.buttonPressed = this.buttonPressed.bind();
+  }
 
-    setInterval(() => {
-      if (this.state.customStyles.color == "red") {
-        this.setState({
-          customStyles: {
-            color: "green"
-          }
-        });
-      } else {
-        this.setState({
-          customStyles: {
-            color: "red"
-          }
-        });
-      }
-    }, 1000);
+  buttonPressed() {
+    //TODO: Get username and password values
+    //const username = this._username._lastNativeText;
+    //const password = this._password._lastNativeText;
   }
 
   render() {
     return (
       <View style={styles.container}>
-        <Text style={[styles.welcome, this.state.customStyles]}>
-          Hello World!
-        </Text>
+        <Text> Username:</Text>
+        <TextInput
+          defaultValue={this.state.username}
+          onChangeText={text => this.setState({ username: text })}
+        />
+
+        <Text> Password: </Text>
+        <TextInput
+          defaultValue={this.state.password}
+          onChangeText={text => this.setState({ password: text })}
+        />
+
+        <Button title={"Hello"} onPress={this.buttonPressed} />
       </View>
     );
   }
@@ -49,18 +47,6 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: "center",
-    alignItems: "center",
-    backgroundColor: "#F5FCFF"
-  },
-  welcome: {
-    fontSize: 20,
-    textAlign: "center",
-    margin: 10,
-    color: "blue"
-  },
-  instructions: {
-    textAlign: "center",
-    color: "#333333",
-    marginBottom: 5
+    padding: 20
   }
 });
